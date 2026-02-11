@@ -1,0 +1,61 @@
+@import "tailwindcss";
+
+@font-face {
+  font-family: RedHatItalic;
+  font-style: italic;
+  font-weight: 200 700;
+  font-display: swap;
+  src: url("../assets/fonts/RedHatText-Italic-VariableFont_wght.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "RedHatText";
+  font-style: normal;
+  font-weight: 200 700;
+  src: url("../assets/fonts/RedHatText-VariableFont_wght.ttf") format("truetype");
+}
+
+@theme {
+  --color-red-base: #C73B0F;
+  --color-green-base: #1EA575;
+  --color-rose-900: #260F08;
+  --color-rose-500: #87635A;
+  --color-rose-400: #AD8A85;
+  --color-rose-300: #CAAFA7;
+  --color-rose-100: #F5EEEC;
+  --color-rose-50: #FCF8F6;
+  --font-red-hat-italic: "RedHatItalic", sans-serif;
+  --font-red-hat: "RedHatText", sans-serif;
+}
+
+
+@utility font-preset-1 {
+  font-size: 2.5rem;
+  line-height: 120%;
+  letter-spacing: 0;
+  font-weight: 700;
+}
+
+@utility font-preset-2 {
+  font-size: 1.5rem;
+  line-height: normal;
+  font-weight: 700;
+}
+
+@utility font-preset-3 {
+  font-size: 1.5rem;
+  line-height: normal;
+  font-weight: 700;
+}
+
+@utility font-preset-4 {
+  font-size: .875rem;
+  line-height: normal;
+  font-weight: 400;
+}
+
+@utility font-preset-4-bold {
+  font-size: .875rem;
+  line-height: normal;
+  font-weight: 600;
+}
