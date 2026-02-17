@@ -1,10 +1,15 @@
 interface Item {
-  title: string;
+  id: number;
+  image: {
+    thumbnail: string;
+    mobile: string;
+    tablet: string;
+    desktop: string;
+  };
+  name: string;
   category: string;
   price: number;
-  img: string;
 }
-
 interface ItemWithQuantity extends Item {
   quantity: number;
 }
@@ -12,10 +17,7 @@ interface ItemWithQuantity extends Item {
 type GlobalStoreState = { cart: ItemWithQuantity[]; items: Item[] };
 
 type GlobalStoreActions = {
-  setCart: (
-    itemWithQuantity:
-      | ItemWithQuantity
-  ) => void;
+  setCart: (itemWithQuantity: ItemWithQuantity) => void;
 };
 
 type GlobalStore = GlobalStoreState & GlobalStoreActions;

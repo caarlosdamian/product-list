@@ -1,39 +1,36 @@
 import { create } from 'zustand';
 import { items } from '../utils/data';
-import { devtools } from 'zustand/middleware';
-
+import { devtools, persist } from 'zustand/middleware';
+import { getItemsWithQuantity, getNewCartWithItem } from '../utils/cart';
+// TODO: agregar esta funcionalidad
+// eliminar cart
+// eliminar item individual
 export const useGlobalStore = create<GlobalStore>()(
-  devtools((set, get) => ({
-    cart: [],
-    items,
+  persist(
+    devtools((set, get) => ({
+      cart: [],
+      items,
 
-    setCart: (item) => {
-      const { cart } = get();
+      setCart: (item) => {
+        const { cart } = get();
 
-      const itemInCart = cart.find(
-        (product) =>
-          product.title.toLocaleLowerCase() === item.title.toLocaleLowerCase(),
-      );
-      if (itemInCart) {
-        const newCart = cart.map((product) => {
-          if (
-            itemInCart.title.toLocaleLowerCase() ===
-            product.title.toLocaleLowerCase()
-          ) {
-            return { ...product, quantity: product.quantity + item.quantity };
-          }
-          return product;
-        });
-        const withourCero = newCart.filter((ele) => ele.quantity > 0);
+        const isItemAlreadyInCart = cart.find(
+          (product) => product?.id === item.id,
+        );
 
+        if (isItemAlreadyInCart) {
+          const newCart = getNewCartWithItem(cart, isItemAlreadyInCart, item);
+
+          set({
+            cart: getItemsWithQuantity(newCart),
+          });
+          return;
+        }
         set({
-          cart: withourCero,
+          cart: [...cart, item],
         });
-        return;
-      }
-      set({
-        cart: [...cart, item],
-      });
-    },
-  })),
+      },
+    })),
+    { name: 'cart' },
+  ),
 );
