@@ -15,4 +15,7 @@ const getNewCartWithItem = (
   return newCart;
 };
 
-export { getItemsWithQuantity, getNewCartWithItem };
+const isItemAlreadyInCart = (cart: ItemWithQuantity[], item: Item) =>
+  cart.find((product) => product?.id === item.id);
+
+export { getItemsWithQuantity, getNewCartWithItem, isItemAlreadyInCart };

@@ -1,7 +1,11 @@
 import { create } from 'zustand';
 import { items } from '../utils/data';
 import { devtools, persist } from 'zustand/middleware';
-import { getItemsWithQuantity, getNewCartWithItem } from '../utils/cart';
+import {
+  getItemsWithQuantity,
+  getNewCartWithItem,
+  isItemAlreadyInCart,
+} from '../utils/cart';
 
 export const useGlobalStore = create<GlobalStore>()(
   persist(
@@ -12,12 +16,10 @@ export const useGlobalStore = create<GlobalStore>()(
       setCart: (item) => {
         const { cart } = get();
 
-        const isItemAlreadyInCart = cart.find(
-          (product) => product?.id === item.id,
-        );
+        const itemPresent = isItemAlreadyInCart(cart, item);
 
-        if (isItemAlreadyInCart) {
-          const newCart = getNewCartWithItem(cart, isItemAlreadyInCart, item);
+        if (itemPresent) {
+          const newCart = getNewCartWithItem(cart, itemPresent, item);
 
           set({
             cart: getItemsWithQuantity(newCart),
