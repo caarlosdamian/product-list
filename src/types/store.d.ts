@@ -18,6 +18,8 @@ type GlobalStoreState = { cart: ItemWithQuantity[]; items: Item[] };
 
 type GlobalStoreActions = {
   setCart: (itemWithQuantity: ItemWithQuantity) => void;
+  deleteCart: () => void;
+  deleteItem: (id: number) => void;
 };
 
 type GlobalStore = GlobalStoreState & GlobalStoreActions;

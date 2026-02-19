@@ -2,9 +2,7 @@ import { create } from 'zustand';
 import { items } from '../utils/data';
 import { devtools, persist } from 'zustand/middleware';
 import { getItemsWithQuantity, getNewCartWithItem } from '../utils/cart';
-// TODO: agregar esta funcionalidad
-// eliminar cart
-// eliminar item individual
+
 export const useGlobalStore = create<GlobalStore>()(
   persist(
     devtools((set, get) => ({
@@ -28,6 +26,18 @@ export const useGlobalStore = create<GlobalStore>()(
         }
         set({
           cart: [...cart, item],
+        });
+      },
+      deleteCart: () => {
+        set({
+          cart: [],
+        });
+      },
+      deleteItem: (itemId) => {
+        const { cart } = get();
+        const cartWithOutItem = cart.filter(({ id }) => id !== itemId);
+        set({
+          cart: cartWithOutItem,
         });
       },
     })),
