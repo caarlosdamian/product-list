@@ -13,7 +13,7 @@ export const useGlobalStore = create<GlobalStore>()(
       cart: [],
       items,
 
-      setCart: (item) => {
+      addOrRemoveItem: (item) => {
         const { cart } = get();
 
         const itemPresent = isItemAlreadyInCart(cart, item);

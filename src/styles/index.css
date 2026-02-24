@@ -43,9 +43,9 @@
 }
 
 @utility font-preset-3 {
-  font-size: 1.5rem;
+  font-size: 1rem;
   line-height: normal;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 @utility font-preset-4 {

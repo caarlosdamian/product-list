@@ -17,7 +17,7 @@ interface ItemWithQuantity extends Item {
 type GlobalStoreState = { cart: ItemWithQuantity[]; items: Item[] };
 
 type GlobalStoreActions = {
-  setCart: (itemWithQuantity: ItemWithQuantity) => void;
+  addOrRemoveItem: (itemWithQuantity: ItemWithQuantity) => void;
   deleteCart: () => void;
   deleteItem: (id: number) => void;
 };
