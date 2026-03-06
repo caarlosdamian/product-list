@@ -18,7 +18,7 @@ export const Card = ({ children, item }: Props) => {
 
       <div className="flex flex-col gap-1">
         <p className='font-preset-4 text-rose-500 font-red-hat'>{item.category}</p>
-        <p className='font-preset-3 text-rose-900 font-red-hat'>{item.name}</p>
+        <p className='font-preset-3 text-rose-900 font-red-hat line-clamp-1'>{item.name}</p>
         <p className='font-preset-3 text-red-base font-red-hat'>{item.price}</p>
       </div>
     </div>

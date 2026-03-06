@@ -61,7 +61,7 @@ export const items = [
       tablet: waffleTablet,
       desktop: waffleDesktop,
     },
-    name: 'Waffle with Berries',
+    name: 'Waffle with Berries Waffle with Berries Waffle with Berries',
     category: 'Waffle',
     price: 6.5,
   },

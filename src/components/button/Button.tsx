@@ -4,12 +4,14 @@ type VariantType = 'primary' | 'secondary' | 'native';
 interface Props
   extends ButtonHTMLAttributes<HTMLButtonElement>, PropsWithChildren {
   variant?: VariantType;
+  customStyle?: boolean;
 }
 
 export const Button = ({
   variant = 'primary',
   children,
   className,
+  customStyle,
   ...props
 }: Props) => {
   const style: Record<VariantType, string> = {
@@ -21,7 +23,7 @@ export const Button = ({
   return (
     <button
       {...props}
-      className={`cursor-pointer ${variant !== 'native' ? style[variant].concat(generalStyles) : className}`}
+      className={`cursor-pointer ${variant !== 'native' ? style[variant].concat(generalStyles).concat(customStyle ? (className as string) : '') : className}`}
     >
       {children}
     </button>
