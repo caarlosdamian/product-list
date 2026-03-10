@@ -1,25 +1,15 @@
 import Cake from '../../assets/images/illustration-empty-cart.svg';
-import { useGlobalStore } from '../../lib/zustand';
 import { Button } from '../button/Button';
 import { CartItem } from '../cartItem/CartItem';
 import CarbonNeutral from '../../assets/images/icon-carbon-neutral.svg';
+import { useCart } from '../../hook/useCart';
 
-export const Cart = () => {
-  const { cart } = useGlobalStore();
-  console.log('quantityItems l, ', cart);
-  const { totalAmout, totalItems } = cart.reduce(
-    (acc, product) => {
-      // acc += product.quantity;
-      // return acc;
-      acc['totalItems'] += product.quantity;
-      acc['totalAmout'] += product.quantity * product.price;
+interface Props {
+  handleChekout: () => void;
+}
+export const Cart = ({ handleChekout }: Props) => {
+  const { cart, totalAmout, totalItems } = useCart();
 
-      return acc;
-    },
-    { totalItems: 0, totalAmout: 0 },
-  );
-
-  console.log('quantityItems', totalItems, totalAmout);
   return (
     <div className="bg-white p-6 rounded-xl min-w-81.75 max-w-[384px] flex flex-col gap-6">
       <div className="">
@@ -50,7 +40,11 @@ export const Cart = () => {
                 delivery
               </p>
             </div>
-            <Button className=" not-even:w-full" customStyle>
+            <Button
+              className=" not-even:w-full"
+              customStyle
+              onClick={() => handleChekout()}
+            >
               Confirm Order
             </Button>
           </div>
